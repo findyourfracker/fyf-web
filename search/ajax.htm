@@ -1,0 +1,78 @@
+
+<head>
+<script type="text/javascript" src="/jquery-ui/1.11.1/external/jquery/jquery.js"></script>
+<script type="text/javascript">
+   $("document").ready(function() {
+   $('#sel1').change(function () {
+      $.ajax({
+         url: "ajax.php",
+         data: {
+            sel1: $("#sel1 :selected").val()
+            },
+         success: function(data) {
+            $("#div1").html(data);
+            }
+         });
+   });
+   $('#sel2').change(function () {
+      $.ajax({
+         url: "ajax.php",
+         data: {
+            sel2: $("#sel2 :selected").val()
+            },
+         success: function(data) {
+            $("#div2").html(data);
+            }
+         });
+   });
+   $('#sel1').focus(function () {
+      $.ajax({
+         url: "ajax.php",
+         data: {
+            sel1: $("#sel1 :selected").val()
+            },
+         success: function(data) {
+            $("#div1").html(data);
+            }
+         });
+   });
+   $('#sel2').focus(function () {
+      $.ajax({
+         url: "ajax.php",
+         data: {
+            sel2: $("#sel2 :selected").val()
+            },
+         success: function(data) {
+            $("#div2").html(data);
+            }
+         });
+   });
+   });
+</script>
+</head>
+
+<select id=sel1>
+<option>???
+<option>aaa
+<option>bbb
+<option>ccc
+</select>
+
+<br><br>
+
+<select id=sel2>
+<option>???
+<option>xxx
+<option>yyy
+<option>zzz
+</select>
+
+<br><br>
+
+<div id=div1>
+</div>
+
+<br>
+
+<div id=div2>
+</div>

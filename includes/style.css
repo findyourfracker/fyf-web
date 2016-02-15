@@ -1,0 +1,545 @@
+
+/***** GENERAL / GLOBAL *****/
+
+body {
+	font-family: 'PT Sans';
+}
+
+.container, .container-fluid {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.bodycontent {
+	min-height: 440px;
+}
+
+
+
+/***** NAV *****/
+
+.topbar {
+	position: relative;
+}
+
+.header-text {
+	display: inline-block;
+	font-size: 2.4em;
+	font-weight: normal;
+	font-family: 'PT Sans Bold';
+	padding-bottom: 12px;
+	margin-left: 20px;
+}
+
+.header-text a {
+	color: #ddd;
+	text-decoration: none;
+}
+
+.navbar-nav {
+	float: right;
+	font-size: 1.6em;
+	padding-top: 14px;
+}
+
+.navbar-nav li a {
+	color: #ddd !important;
+}
+
+.navbar-nav li a:hover {
+	color: #5F9F9F !important;
+}
+
+.navbar-toggle {
+	margin: 24px 30px 0 0;
+	border: none;
+}
+
+.navbar-toggle:hover {
+	background-color: #ccc !important;
+}
+
+@media (max-width: 767px) {
+	.navbar-collapse {
+		border-top: 1px #ccc solid !important;
+	}
+	.topbar li {
+		display: inline-block;
+	}
+	.navbar-nav {
+		margin: 2px 0 12px 0;
+	}
+}
+
+
+
+/***** FOOTER *****/
+
+.footer {
+	background-color: #fff;
+	padding-bottom: 40px;
+}
+
+#footer-nav {
+	margin-right: 20px;
+}
+
+#footer-nav li a {
+	color: #999 !important;
+}
+
+#footer-nav li a:hover {
+	background-color: #fff;
+	color: #5F9F9F !important;
+}
+
+.shareicons {
+	margin: 30px 0 0 50px;
+}
+
+.shareicons img {
+	opacity: .7;
+	height: 26px;
+	border-radius:4px;
+	margin-left: 6px;
+	vertical-align: top;
+}
+
+.shareicons img:hover {
+	opacity: .5;
+}
+
+.shareicons h3 {
+	display: inline-block;
+	font-size: 1.4em;
+	margin: 0;
+}
+
+
+
+/***** BORDER-BOX *****/
+
+* { 
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing:    border-box; 
+	box-sizing:         border-box; 
+}
+
+
+
+/***** SEARCH / MAP / LEGISLATORS *****/
+
+/** Search **/
+#searcharea {
+	background-color: #eee;
+	margin-top: -20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.addressbar {
+	margin: -10px 0 0 20px;
+}
+
+.addressbar p {
+	margin: 0;
+}
+
+#address {
+	width: 360px;
+	height: 26px;
+	margin-bottom: 0;
+	padding-top: 0;
+	vertical-align: top;
+	margin-top: 1px;
+}
+
+#address-submit {
+	background: #ccc url('../search/images/search.png') no-repeat top left;/*dbe (changed to relative path)*/
+	padding: 0;
+    height: 28px;
+    width: 28px;
+    border-radius: 6px;
+    cursor: pointer;/*dbe*/
+}
+
+.ui-autocomplete {
+	font-family: 'PT Sans';
+	font-size: 14px;
+	font-weight: 900;
+	color: rgb(0,0,0);
+	width: 400px;
+	background-color: rgba(255,255,255,.8);
+	z-index: 50;
+}
+
+/** Map **/
+.main {
+	position: relative;
+	height: 400px;
+	width: 100%;
+	padding-top: 10px;
+	padding-left: 50px;
+	background-color:rgba(255,255,255,0);/*dbe*/
+}
+
+#AreaSelect {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 28px 0 0 80px;
+	float: left;
+	font-family: 'PT Sans';
+	font-size: 14px;
+	font-weight: normal;
+	color: #fafafa;
+	background-color:rgba(7,7,7,.5);
+	border-width:0;
+	z-index:1;
+}
+
+#maincontent_container {/*dbe*/
+	margin: 30px;
+	display:none;
+	opacity:0;
+}
+
+/** Legislator Pics **/
+#MultiLegislatorDisplay {
+	overflow-x: auto;
+	background-color: #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	display: none;
+}
+
+#legislator-instructions {
+	display: none;
+	margin-left: 20px;
+	margin-bottom: 0;
+	font-weight: bold;
+}
+#legislator-instructions p {
+	margin-bottom: 2px;
+}
+
+.LegislatorDiv {
+	float: left;
+	width: 120px;
+	height: 145px;
+	border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.LegislatorPhotoDiv {
+	display: block;
+	width: 120px;
+	height: 100px;
+	overflow-x: hidden;
+	text-align: center;
+	overflow-y: hidden;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0);
+	background-color: rgba(129, 129, 129, 0.496094);
+
+}
+
+.LegislatorPhotoImg {
+	height: 100px;
+}
+
+.LegislatorFrackerBanner {
+	display: block;
+	position: relative;
+	font-family: 'PT Sans Bold';
+	font-weight: normal;
+	color: white;
+	transform: rotate(-41deg);
+	-ms-transform: rotate(-41deg);
+	-webkit-transform: rotate(-41deg);
+	-o-transform: rotate(-41deg);
+	opacity: 1;
+}
+
+.LegislatorFrackerBannerPro {
+	font-size: 14px;
+	left: 8px;
+	top: -38px;
+	width: 155px;
+	height: 20px;
+	background-color: rgba(255, 0, 0, 0.699219);
+}
+
+.LegislatorFrackerBannerPro2 {
+	font-size: 14px;
+	left: 8px;
+	top: -38px;
+	width: 155px;
+	height: 20px;
+	background-color: rgba(237, 202, 0, 0.8);
+}
+
+.LegislatorFrackerBannerAnti {
+	font-size: 12px;
+	left: 8px;
+	top: -39px;
+	width: 155px;
+	height: 18px;
+	background-color: rgba(0, 150, 0, 0.699219);
+}
+
+.LegInfoDiv {
+	display: block;
+	width: 120px;
+	height: 40px;
+	color: #eee;
+	font-family: Arial;
+	font-size: 10px;
+	font-weight: normal;
+	text-align: center;
+	background-color: #464646;
+}
+
+/** Active Legislator **/
+#ActiveLegislatorDisplay {
+	display: none;
+	opacity: 0;
+	height: 165px;
+	background-color: #ccc;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+#ActiveLegislatorDetailDiv {
+	float: left;
+	width: 120px;
+	height: 145px;
+	border: 1px solid rgba(255, 255, 255, 0);
+	margin-top: 0;
+}
+
+#ActiveLegislatorContactButtonsRow {
+	display: block;
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+.ContactButton {
+	float: left;
+	display: inline-block;
+	margin-left: 6px;
+	font-family: 'PT Sans';
+	font-size: 14px;
+	font-weight: normal;
+	color: #555;
+	background-color: white;
+	padding: 4px;
+	border-width: 1px;
+	border-color: #999;
+	border-style: solid;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+#ActiveLegislatorVoteStats {
+	margin: 20px;
+	padding: 10px;
+	overflow-y: auto;
+	min-width: 200px;
+	display: block;
+}
+
+#ActiveLegislatorVoteStatsTable {
+	font-family: 'PT Sans';
+	font-size: 12px;
+	float: left;
+	border-collapse: true;
+}
+
+.ActiveLegislatorVoteStatsRow {
+}
+
+.ActiveLegislatorVoteStatsCell {
+	display: none; /*Currently excluded from page*/
+	border-left: 5px solid rgba(0,0,0,0);
+	border-right: 5px solid rgba(0,0,0,0);
+}
+
+.ActiveLegislatorVoteTextCell {
+	text-align: center;
+	border-left: 5px solid rgba(0,0,0,0);
+	border-right: 5px solid rgba(0,0,0,0);
+	font-size: 14px;
+	font-family: 'PT Sans';
+}
+
+.ActiveLegislatorVoteStatsHeader {
+	font-weight: 900;
+}
+
+.ActiveLegislatorVoteStatsCell_DateStamp {
+	text-align: center;
+}
+
+.ActiveLegislatorVoteStatsCell_BillId {
+	text-align: center;
+}
+
+.ActiveLegislatorVoteStatsCell_Vote {
+	text-align: center;
+}
+
+.ActiveLegislatorVoteStatsCell_VoteScore {
+	text-align: center;
+}
+
+.ActiveLegislatorVoteStatsCell_LegislationTitle {
+	text-align: left;
+	width: 160px;
+}
+
+.VoteSpanAntiFrack{
+	background-color: rgba(0, 255, 0, 0.5);
+	border-radius: 3px;
+}
+
+.VoteSpanProFrack {
+	background-color: rgba(255, 0, 0, 0.5);
+	border-radius: 3px;
+}
+
+/** Pointer (N/A at for now) **/
+#PointUp {
+}
+
+
+/** BillDetail **/
+#BillDetailMaster {
+	display: none;
+	opacity: 0;
+	position: absolute;
+	font-family: 'PT Sans';
+	font-size: 14px;
+	text-align: center;
+	background-color: #fff;
+	border: #888;
+	border-radius: 6px;
+	width: 400px;
+	padding: 15px;
+	z-index: 50;
+}
+
+#BillDetailBG {
+	display: none;
+	opacity: 0;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	z-index: 49;
+}
+
+#BillDetailHeader1 {
+}
+
+#BillDetailHeader2 {
+	font-size: 14px;
+	font-weight: 900;
+	color: #aaa;
+}
+
+#BillDetailHeader3 {
+	font-style: italic;
+}
+
+#BillDetailOpinionHeader {
+	font-size: 14px;
+	font-weight: 900;
+	color: #aaa; 
+}
+
+#BillDetailOpinionBody {
+}
+
+#BillDetailLinksHeader {
+	display: none; /* feature temporarily inactive */
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 900;
+	color: #aaa; 
+}
+
+#BillDetailLinksTable {
+}
+
+
+/** ToolTip **/
+#ToolTip {
+	position: absolute;
+	display: none;
+	font-family: 'PT Sans';
+	font-size: 11px;
+	color: rgb(17, 17, 17);
+	background-color: rgba(189, 220, 244, 0.796875);
+	padding: 4px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.699219);
+	border-radius: 3px;
+	white-space: nowrap;
+	z-index: 10000;
+}
+
+.ToolTipHeader {
+	text-align: center;
+	font-weight: 900;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ToolTipAreaHeader {
+	font-size: 9px;
+	font-weight: 600;
+}
+
+.ToolTipPerson {
+}
+
+.ToolTipFrackerPro {
+	color: red;
+	font-size: 9px;
+	font-weight: 900;
+}
+
+.ToolTipFrackerAnti {
+	color: green;
+	font-size: 9px;
+	font-weight: 900;
+}
+
+
+
+/***** FONTS *****/
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('fonts/PTS55F-webfont.eot');
+    src: url('fonts/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/PTS55F-webfont.woff') format('woff'),
+         url('fonts/PTS55F-webfont.ttf') format('truetype'),
+         url('fonts/PTS55F-webfont.svg#pt_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT Sans Bold';
+    src: url('fonts/PTS75F-webfont.eot');
+    src: url('fonts/PTS75F-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/PTS75F-webfont.woff') format('woff'),
+         url('fonts/PTS75F-webfont.ttf') format('truetype'),
+         url('fonts/PTS75F-webfont.svg#pt_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

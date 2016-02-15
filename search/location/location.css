@@ -1,0 +1,47 @@
+
+body
+   {
+   margin: 0;
+   }
+h1
+   {
+   margin-top: 0;
+   margin-bottom: 0;
+   }
+#header
+   {
+   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+   box-sizing: border-box;         /* Opera/IE 8+ */
+   width: 100%;
+   border: 0;
+   padding: 10px;
+   background-color: #444444;
+   color: white;
+   }
+#left
+   {
+   float: left;
+   width: 50%;
+   height: 500px;
+   border: 0;
+   }
+#right
+   {
+   float: left;
+   width: 50%;
+   height: 500px;
+   border: 0;
+   }
+#div1, #div2, #div3
+   {
+   margin: 10px;
+   padding: 10px;
+   background-color:#cccccc;
+   border-radius: 10px;
+   box-shadow: 5px 5px 5px #666666;
+   }
+#div3
+   {
+   height: 500px;
+   }

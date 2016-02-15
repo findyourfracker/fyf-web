@@ -1,0 +1,22 @@
+
+jan 2015
+
+location.htm - start page
+location.css
+location.js
+
+location.php - called by location.js ajax
+
+contact.php - called by location.php
+map.php     - called by location.php
+photo.php   - called by location.php
+votes.php   - called by location.php
+
+bio2gov.txt - maps bioguide id to govtrack id
+curl.inc - php curl interface
+district3.tpl - javascript template for google map ... [[[xxx]]] macro sub
+
+bills-federal.txt - names of federal bills to lookup
+bills-state.txt   - names of state bills to lookup
+
+eof

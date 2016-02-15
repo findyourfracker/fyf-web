@@ -1,0 +1,286 @@
+<!DOCTYPE><html><head></head><body><script>
+	UniqueId=new Date().getTime();
+	dbug=[];
+	document.body.style.backgroundColor="#fff";
+	PhpPath="/search/prjx270.php?"+UniqueId;
+	window.onload=function(){
+		Inits();
+	};
+	
+	function Inits_Login(){
+		Login=$("<input>")
+			.attr({id:"Login",type:"password",placeholder:"LOGIN"})
+			.css({position:"absolute",left:100,top:100,fontSize:30,zIndex:100})
+			.bind({
+				change:function(){
+					$.ajax({
+						type:"post",
+						url:PhpPath,
+						data:{Action:"Login",Pwd:this.value},
+						error:function(a,b,c){
+							alert("fail");
+							console.log(a,b,c);
+						},
+						success:function(data){
+							if(data=="success"){
+								$("#Login").animate({opacity:0},function(){
+									$("#Login").css({display:"none"});
+								});
+								Inits_Data();
+							}else{
+								alert("Password NG");
+							}
+						}
+					});
+				}
+			})
+			.appendTo(document.body)[0];
+	}
+	
+	function Inits(){
+		var CreepRows;
+		LoadCount=0;
+		Scripts=[
+			{Url:"http://code.jquery.com/jquery-1.9.0.js"},
+			{Url:"http://code.jquery.com/ui/1.10.4/jquery-ui.js"}
+		];
+		for(CreepRows=0;CreepRows<Scripts.length;CreepRows++){
+			Scripts[CreepRows].Loader=document.head.appendChild(document.createElement("script"));
+			Scripts[CreepRows].Loader.src=Scripts[CreepRows].Url;
+			Scripts[CreepRows].Loader.onload=function(){
+				LoadCount++;
+				if(LoadCount==Scripts.length){
+					Inits_Login();
+				}
+			};
+		}
+	}
+	
+	function Inits_Data(){
+		$.ajax({
+			url:"BillBuild.txt?"+new Date().getTime(),
+			type:"get",
+			dataType:"html",
+			error:function(a,b,c){
+				alert("Data Err");
+				console.log(a,b,c);
+			},
+			success:function(data){
+				Inits_Table(data);
+			}
+		});
+	}
+	
+	function Inits_Table(data){
+		CellIds=["IDX","BillId","Grade","Year","GovernmentLevel","State","County","Municipality","Urls","Notes_Tab"];
+		InputDetails={
+			IDX:{lmnt:"input",attr:{},prop:{readonly:true},css:{display:"none",textAlign:"center",width:30}},
+			BillId:{lmnt:"input",attr:{},prop:{},css:{textAlign:"center",width:80}},
+			Grade:{lmnt:"select",options:["","Pro-Frack","Anti-Frack"],attr:{},prop:{},css:{textAlign:"center",width:90}},
+			Year:{lmnt:"input",attr:{},prop:{},css:{textAlign:"center",width:60}},
+			GovernmentLevel:{lmnt:"select",options:["","Federal","State","Local"],attr:{},prop:{},css:{textAlign:"center",width:80}},
+			State:{lmnt:"input",attr:{},prop:{},css:{textAlign:"center",width:30}},
+			County:{lmnt:"input",attr:{},prop:{},css:{display:"none"}},
+			Municipality:{lmnt:"input",attr:{},prop:{},css:{display:"none"}},
+			Urls:{lmnt:"input",attr:{},prop:{},css:{display:"inline",float:"left",width:300}},
+			Notes_Tab:{header:"Notes",lmnt:"textarea",attr:{type:"textarea"},prop:{},css:{}}
+		};
+		StatesAbbr=[{"StateAbbr":"AK","State":"Alaska"},{"StateAbbr":"AL","State":"Alabama"},{"StateAbbr":"AR","State":"Arkansas"},{"StateAbbr":"AS","State":"American Samoa"},{"StateAbbr":"AZ","State":"Arizona"},{"StateAbbr":"BA","State":"Bahamas"},{"StateAbbr":"CA","State":"California"},{"StateAbbr":"CO","State":"Colorado"},{"StateAbbr":"CT","State":"Connecticut"},{"StateAbbr":"DC","State":"District of Columbia"},{"StateAbbr":"DE","State":"Delaware"},{"StateAbbr":"FL","State":"Florida"},{"StateAbbr":"GA","State":"Georgia"},{"StateAbbr":"GU","State":"Guam"},{"StateAbbr":"HI","State":"Hawaii"},{"StateAbbr":"IA","State":"Iowa"},{"StateAbbr":"ID","State":"Idaho"},{"StateAbbr":"IL","State":"Illinois"},{"StateAbbr":"IN","State":"Indiana"},{"StateAbbr":"KS","State":"Kansas"},{"StateAbbr":"KY","State":"Kentucky"},{"StateAbbr":"LA","State":"Louisiana"},{"StateAbbr":"MA","State":"Massachusetts"},{"StateAbbr":"MD","State":"Maryland"},{"StateAbbr":"ME","State":"Maine"},{"StateAbbr":"MI","State":"Michigan"},{"StateAbbr":"MN","State":"Minnesota"},{"StateAbbr":"MO","State":"Missouri"},{"StateAbbr":"MP","State":"Northern Mariana Islands"},{"StateAbbr":"MS","State":"Mississippi"},{"StateAbbr":"MT","State":"Montana"},{"StateAbbr":"NC","State":"North Carolina"},{"StateAbbr":"ND","State":"North Dakota"},{"StateAbbr":"NE","State":"Nebraska"},{"StateAbbr":"NH","State":"New Hampshire"},{"StateAbbr":"NJ","State":"New Jersey"},{"StateAbbr":"NM","State":"New Mexico"},{"StateAbbr":"NV","State":"Nevada"},{"StateAbbr":"NY","State":"New York"},{"StateAbbr":"OH","State":"Ohio"},{"StateAbbr":"OK","State":"Oklahoma"},{"StateAbbr":"OR","State":"Oregon"},{"StateAbbr":"PA","State":"Pennsylvania"},{"StateAbbr":"PR","State":"Puerto Rico"},{"StateAbbr":"RI","State":"Rhode Island"},{"StateAbbr":"SC","State":"South Carolina"},{"StateAbbr":"SD","State":"South Dakota"},{"StateAbbr":"TN","State":"Tennessee"},{"StateAbbr":"TX","State":"Texas"},{"StateAbbr":"UT","State":"Utah"},{"StateAbbr":"VA","State":"Virginia"},{"StateAbbr":"VT","State":"Vermont"},{"StateAbbr":"WA","State":"Washington"},{"StateAbbr":"WI","State":"Wisconsin"},{"StateAbbr":"WV","State":"West Virginia"},{"StateAbbr":"WY","State":"Wyoming"}];
+		StatesOptions=[];
+		for(Creep=0;Creep<StatesAbbr.length;Creep++){
+			StatesOptions.push($("<option>").html(StatesAbbr[Creep].StateAbbr).attr({value:StatesAbbr[Creep]})[0]);
+		}
+		//var CreepRows,CreepCells,CreepUrls,CreepOptions;
+		if(typeof Table==="undefined"){
+			Table=$("<table>")
+				.css({borderCollapse:"collapse"})
+				.appendTo(document.body)[0];
+		}else{
+			$(Table).find("tr").remove();
+		}
+		ThisRow=$("<tr>").appendTo(Table)[0];
+		for(CreepCells=0;CreepCells<CellIds.length;CreepCells++){
+			CellData=
+			ThisCell=$("<td>")
+				.css({fontFamily:"Helvetica",fontSize:11,textAlign:"center",display:(InputDetails[CellIds[CreepCells]].css.display=="none"?"none":"table-cell")})
+				.html(typeof InputDetails[CellIds[CreepCells]].header!=="undefined" ? InputDetails[CellIds[CreepCells]].header : CellIds[CreepCells])
+				.appendTo(ThisRow)[0];
+		}
+		TableData=data.replace(/\n/g,"\r");
+		TableData=TableData.split("\r");
+		for(CreepRows=0;CreepRows<TableData.length;CreepRows++){
+			TableData[CreepRows]=TableData[CreepRows].split("\t");
+			if(TableData[CreepRows].length<=1){
+				TableData.splice(CreepRows,1);
+				CreepRows--;
+			}else{
+				TableRow=$("<tr>")
+					.appendTo(Table)[0];
+				for(CreepCells=0;CreepCells<TableData[CreepRows].length;CreepCells++){
+					CellData=TableData[CreepRows][CreepCells];
+					CellId=CellIds[CreepCells];
+					TableCell=$("<td>")
+						.attr({class:"Cell_"+CellId})
+						.css({display:(InputDetails[CellId].css.display=="none"?"none":"table-cell"),border:"1px solid #aaa"})
+						.appendTo(TableRow)[0];
+					UpdateCellInput=function(){
+						TableInput=$("<"+InputDetails[CellId].lmnt+">")
+							.attr(InputDetails[CellId].attr)
+							.prop(InputDetails[CellId].prop)
+							.css(InputDetails[CellId].css)
+							.attr({class:"Input_"+CellId})
+							.css({borderColor:"rgba(253,223,253,.3)",borderWidth:1})
+							.bind({
+								change:function(){
+									UpdateDataFile();
+								}
+							})
+							.appendTo(TableCell)[0];
+						CellData=unescape(CellData);
+						if(InputDetails[CellId].lmnt=="input"){
+							TableInput.value=CellData;
+						}else if(InputDetails[CellId].lmnt=="textarea"){
+							TableInput.value=CellData;
+						}else if(InputDetails[CellId].lmnt=="select"){
+							for(CreepOptions=0;CreepOptions<InputDetails[CellId].options.length;CreepOptions++){
+								ThisValue=InputDetails[CellId].options[CreepOptions];
+								ThisOption=$("<option>")
+									.attr({value:InputDetails[CellId].options[CreepOptions],selected:(ThisValue==CellData?true:false)})
+									.html(InputDetails[CellId].options[CreepOptions])
+									.appendTo(TableInput)[0];
+							}
+						}
+						if(CellId=="Urls"){
+							$(TableInput)
+								.prop({LinkDiv:LinkDiv})
+								.bind({
+									change:function(){
+										this.LinkDiv.url=this.value;
+									}
+								})
+						}
+					};
+					if(CellId=="Urls"){
+						Urls=CellData.split("<ret>");
+						for(CreepUrls=0;CreepUrls<Urls.length;CreepUrls++){
+							CellData=Urls[CreepUrls];
+							LinkDiv=$("<div>")
+								.prop({url:unescape(CellData)})
+								.css({float:"left",clear:"left",width:20,height:10,marginTop:5,border:"1px solid #ccc",borderRadius:3,backgroundColor:"#eee",cursor:"pointer"})
+								.bind({
+									click:function(){
+										window.open(this.url,"new");
+									}
+								})
+								.appendTo(TableCell)[0];
+							UpdateCellInput();
+						}
+						NewUrl=$("<div>")
+							.css({fontFamily:"Helvetica",fontSize:9,width:20,textAlign:"center",height:10,marginTop:5,border:"1px solid #ccc",borderRadius:3,backgroundColor:"#eee",float:"left",clear:"both",cursor:"pointer"})
+							.html("add")
+							.bind({
+								click:function(){
+									LinkDiv=$("<div>")
+										.prop({url:""})
+										.css({display:"block",float:"left",clear:"both",width:20,height:10,marginTop:5,border:"1px solid #ccc",borderRadius:3,backgroundColor:"#eee"})
+										.bind({
+											click:function(){
+												window.open(this.url,"new");
+											}
+										})
+										.insertBefore(this.NewUrl)[0];
+									ThisInput=$("<input>")
+										.prop({LinkDiv:LinkDiv})
+										.attr({class:"Input_Urls"})
+										.css(InputDetails.Urls.css)
+										.bind({
+											change:function(){
+												this.LinkDiv.url=this.value;
+												UpdateDataFile();
+											}
+										})
+										.insertBefore(this.NewUrl)[0];
+								}
+							})
+							.appendTo(TableCell)[0];
+						NewUrl.NewUrl=NewUrl;
+					}else{
+						UpdateCellInput();
+					}
+				}
+			}
+		}
+		if(typeof NewEntryBtn==="undefined"){
+			NewEntryBtn=$("<div>")
+				.attr({id:"NewEntryBtn"})
+				.css({fontFamily:"Helvetica",fontSize:10,padding:3,textAlign:"center",marginTop:5,border:"1px solid #ccc",borderRadius:3,backgroundColor:"#eee",float:"left",clear:"both",cursor:"pointer"})
+				.html("Add Entry")
+				.bind({
+					click:function(){
+						UpdateDataFile("AddRow");
+					}
+				})
+				.appendTo(document.body)[0];
+		}
+	}
+	
+	function UpdateDataFile(Specs){
+		Output="";
+		$(Table.rows).each(function(index,value){
+			if(index>0){
+				ThisRow=this;
+				for(CreepCells=0;CreepCells<CellIds.length;CreepCells++){
+					ThisCellId=CellIds[CreepCells];
+					ThisInputCollection=$(ThisRow).find(".Input_"+ThisCellId);
+					for(CreepInputs=0;CreepInputs<ThisInputCollection.length;CreepInputs++){
+						ThisInput=ThisInputCollection[CreepInputs];
+						if(InputDetails[ThisCellId].lmnt=="input"){
+							ThisEntry=ThisInput.value;
+						}else if(InputDetails[ThisCellId].lmnt=="textarea"){
+							ThisEntry=ThisInput.value;
+						}else if(InputDetails[ThisCellId].lmnt=="select"){
+							ThisEntry=$(ThisInput).val();
+						}
+						Output+=escape(ThisEntry.replace(/\r/g,"<ret>").replace(/\t/g,"<tab>"));
+						Output+=(CreepInputs<ThisInputCollection.length-1 ? "<ret>" : "")
+					}
+					Output+=(CreepCells<CellIds.length-1 ? "\t" : "\r");
+				}
+			}
+		});
+		if(Specs=="AddRow"){
+			Output+="\r";
+			for(Creep=0;Creep<CellIds.length;Creep++){
+				Output+=(Creep<CellIds.length-1?"\t":"");
+			}
+		}
+		$.ajax({
+			url:PhpPath,
+			type:"post",
+			data:{
+				Action:"BillBuildUpdate",
+				Data:Output
+			},
+			context:{Specs:Specs},
+			error:function(a,b,c){
+				alert("Data Err");
+				console.log(a,b,c);
+			},
+			success:function(data){
+				if(this.Specs=="AddRow"){
+					Inits_Data();
+				}
+			}
+			
+		});
+	}
+	
+	function TypeOf(obj) {
+		/*build in an "undefined" feature*/
+		/*return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();  (ORIG)*/
+		return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1];
+	}
+
+</script>
+</body>
+</html>

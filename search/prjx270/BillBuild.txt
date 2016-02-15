@@ -1,0 +1,6 @@
+1	HR 2728	Pro-Frack	2013	Federal				http://thehill.com/blogs/floor-action/votes/190977-house-votes-to-block-federal-fracking-rules	
+2	TBD	Anti-Frack	2013	Federal				http://stateimpact.npr.org/pennsylvania/2013/03/14/federal-legislation-aims-to-close-fracking-loopholes/	Fresher Act
+3	TBD	Anti-Frack	2013	Federal				http://stateimpact.npr.org/pennsylvania/2013/03/14/federal-legislation-aims-to-close-fracking-loopholes/	Breathe Act
+4	SB 76	Pro-Frack	2013	State	NC			http://rafiusa.org/issues/landowner-rights-and-fracking/sb-76/<ret>http://www.ncleg.net/gascripts/voteHistory/RollCallVoteTranscript.pl?sSession=2013&sChamber=H&RCS=1256	
+5	SB 127	Pro-Frack	2013	State	NC			http://rafiusa.org/issues/landowner-rights-and-fracking/sb-76/<ret>http://thinkprogress.org/climate/2013/07/26/2364111/last-minute-attempt-to-repeal-fracking-moratorium-fails-in-north-carolina/	
+6	SB 820	Pro-Frack	2011	State	NC			http://rafiusa.org/issues/landowner-rights-and-fracking/sb-76/	
